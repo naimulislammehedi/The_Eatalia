@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>The Eatalia | Italian Pizza & Pasta | Chittagong</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefaf5;
+      color: #1e1e2a;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --red: #c1292e;
+      --red-dark: #a32025;
+      --green: #2e8b57;
+      --green-light: #3ba871;
+      --warm-cream: #fff6ed;
+      --white: #ffffff;
+      --gray-light: #f7f3ef;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
+      --transition: all 0.25s ease;
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    /* typography */
+    h1, h2, h3 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 4px;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .section-header h2:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      font-size: 0.95rem;
+      text-decoration: none;
+      justify-content: center;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 4px 8px rgba(193, 41, 46, 0.2);
+    }
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -5px rgba(193, 41, 46, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--red);
+      color: var(--red);
+    }
+    .btn-outline:hover {
+      background: var(--red);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-wa {
+      background: #25D366;
+      color: white;
+    }
+    .btn-wa:hover {
+      background: #1da851;
+    }
+
+    /* header & nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 99;
+    }
+    .logo h3 {
+      font-size: 1.6rem;
+      color: var(--red);
+    }
+    .logo span {
+      color: var(--green);
+      font-weight: 700;
+    }
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.7rem;
+      color: #2c2c2c;
+      transition: var(--transition);
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: var(--red);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(107deg, #fef3e4 0%, #fff1e0 100%);
+      padding: 3rem 1.5rem;
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      line-height: 1.2;
+      color: var(--red);
+    }
+    .hero-content .tagline {
+      font-size: 1.2rem;
+      color: var(--green);
+      font-weight: 600;
+      margin: 1rem 0 1.5rem;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .hero-image {
+      flex: 1;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .hero-image img:hover {
+      transform: scale(1.02);
+    }
+
+    /* menu cards grid */
+    .category-section {
+      margin-bottom: 3rem;
+    }
+    .category-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      padding-left: 0.5rem;
+      border-left: 6px solid var(--red);
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .menu-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .menu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+    .menu-img {
+      height: 190px;
+      overflow: hidden;
+    }
+    .menu-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .menu-card:hover .menu-img img {
+      transform: scale(1.05);
+    }
+    .menu-info {
+      padding: 1.2rem;
+    }
+    .menu-info h4 {
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+    .desc {
+      font-size: 0.85rem;
+      color: #5a5a6e;
+      margin: 0.5rem 0;
+      line-height: 1.4;
+    }
+    .price {
+      font-weight: 800;
+      color: var(--red);
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .card-buttons {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .card-buttons button {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-order-now {
+      background: var(--green);
+      color: white;
+    }
+    .btn-order-now:hover {
+      background: #236b45;
+    }
+    .btn-add-cart {
+      background: #ffedd5;
+      color: #b45309;
+      border: 1px solid #fed7aa;
+    }
+    .btn-add-cart:hover {
+      background: #fed7aa;
+    }
+
+    /* offers, gallery, reviews */
+    .offers-grid, .gallery-grid, .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+    }
+    .offer-card {
+      background: linear-gradient(135deg, #fff5e6, #fff0e0);
+      border-radius: 2rem;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid #ffd9b5;
+      position: relative;
+    }
+    .badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--red);
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      font-weight: bold;
+      font-size: 0.7rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 24px;
+      transition: var(--transition);
+    }
+    .gallery-grid img:hover {
+      transform: scale(0.98);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .review-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .stars {
+      color: #fbbf24;
+      margin-bottom: 0.8rem;
+    }
+    /* booking + contact */
+    .booking-contact {
+      background: var(--warm-cream);
+    }
+    .booking-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 32px;
+      box-shadow: var(--shadow-md);
+    }
+    .booking-form input, .booking-form select {
+      width: 100%;
+      padding: 0.9rem;
+      margin: 0.7rem 0;
+      border: 1px solid #e2e8f0;
+      border-radius: 60px;
+      font-family: inherit;
+    }
+    .contact-info {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .map {
+      margin-top: 1.5rem;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    /* floating WA */
+    .float-wa {
+      position: fixed;
+      bottom: 25px;
+      right: 20px;
+      background: #25D366;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+      z-index: 100;
+      transition: var(--transition);
+    }
+    .float-wa:hover {
+      transform: scale(1.08);
+      background: #1da851;
+    }
+
+    /* cart drawer */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 90%;
+      max-width: 420px;
+      height: 100%;
+      background: white;
+      z-index: 201;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+    .cart-drawer.open {
+      right: 0;
+    }
+    .cart-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      border-bottom: 2px solid #f0e4d8;
+      padding-bottom: 1rem;
+    }
+    .cart-items-list {
+      flex: 1;
+      overflow-y: auto;
+      margin: 1rem 0;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #f0e4d8;
+    }
+    .cart-item-details p {
+      font-weight: 600;
+    }
+    .cart-qty {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .cart-qty button {
+      background: #f1f1f1;
+      border: none;
+      width: 28px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .cart-total {
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+    footer {
+      background: #1e1e2a;
+      color: #ccc;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 2.2rem; }
+      .container { padding: 0 1.2rem; }
+      section { padding: 3rem 0; }
+      .menu-grid { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar with cart -->
+<div class="navbar">
+  <div class="logo">
+    <h3>The <span>Eatalia</span></h3>
+  </div>
+  <div class="cart-icon" id="cartIcon">
+    <i class="fas fa-shopping-bag"></i>
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <h1>The Eatalia<br>Chittagong</h1>
+      <div class="tagline">🍕 Where there's Pizza, there's Bonanza! 🎉</div>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary" id="heroOrderWA"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+        <a href="#booking" class="btn btn-outline"><i class="fas fa-calendar-alt"></i> Book a Table</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format" alt="Delicious Italian Pizza">
+    </div>
+  </div>
+</section>
+
+<!-- Menu Section (dynamic from JS) -->
+<section id="menu">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Signature Menu</h2>
+      <p>Authentic Italian flavours, crafted with love ❤️</p>
+    </div>
+    <div id="menuContainer"></div>
+  </div>
+</section>
+
+<!-- Offers Section -->
+<section style="background: #fffaf3;">
+  <div class="container">
+    <div class="section-header">
+      <h2>Hot Offers 🔥</h2>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card"><div class="badge">LIMITED</div><i class="fas fa-pizza-slice fa-2x" style="color: var(--red);"></i><h3>Buy 1 Get 1 Pizza</h3><p>Every Friday & Saturday on large pizzas</p></div>
+      <div class="offer-card"><div class="badge">-20%</div><i class="fas fa-utensils fa-2x" style="color: var(--green);"></i><h3>Pasta Combo</h3><p>Any pasta + drink @ 499 BDT only</p></div>
+      <div class="offer-card"><div class="badge">FAMILY</div><i class="fas fa-wine-bottle fa-2x"></i><h3>Family Feast</h3><p>2 Pizzas + 2 Pastas + 4 Drinks | 1899 BDT</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section>
+  <div class="container">
+    <div class="section-header"><h2>🍽️ Instagram Moments</h2></div>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400" alt="pizza slice">
+      <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400" alt="pasta">
+      <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400" alt="drink">
+      <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400" alt="combo">
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section style="background: #fff3ea;">
+  <div class="container">
+    <div class="section-header"><h2>❤️ Loved by Foodies</h2></div>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Best pizza in Chittagong! Authentic taste and super fast WhatsApp ordering."</p><h4>- Rifat Hasan</h4></div>
+      <div class="review-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p>"The ambiance is great and the pasta combos are unreal. Love the bonanza vibe!"</p><h4>- Tamanna S.</h4></div>
+      <div class="review-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Quick booking via WhatsApp & staff is super friendly. Must try pepperoni pizza."</p><h4>- Shadman Arefin</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- Booking + Contact Section -->
+<section id="booking" class="booking-contact">
+  <div class="container">
+    <div class="section-header"><h2>Reserve a Table</h2></div>
+    <div class="booking-form" id="bookingForm">
+      <input type="text" id="bookingName" placeholder="Your Name" required>
+      <input type="datetime-local" id="bookingTime" required>
+      <input type="number" id="bookingGuests" placeholder="Number of Guests" min="1" required>
+      <button class="btn btn-primary" id="submitBooking" style="width:100%"><i class="fab fa-whatsapp"></i> Confirm Booking via WhatsApp</button>
+    </div>
+    <div class="contact-info">
+      <h3>📍 Find Us</h3>
+      <p><i class="fas fa-phone-alt"></i> +880 1888 888 888</p>
+      <p><i class="fas fa-map-marker-alt"></i> GEC Circle, Chittagong, Bangladesh</p>
+      <p><i class="far fa-clock"></i> Open Daily: 12:00 PM – 11:00 PM</p>
+      <div class="map">
+        <iframe src="https://maps.google.com/maps?q=Chittagong%20GEC%20Circle&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style="border:0; border-radius: 20px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 The Eatalia, Chittagong. Where there's Pizza, there's Bonanza! 🍕</p>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="#" class="float-wa" id="floatWhatsappBtn"><i class="fab fa-whatsapp"></i></a>
+
+<!-- Cart Drawer & Overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header"><span>🛒 Your Order</span><i class="fas fa-times" id="closeCart" style="cursor:pointer;"></i></div>
+  <div class="cart-items-list" id="cartItemsList"><p style="text-align:center;">Cart is empty</p></div>
+  <div class="cart-total" id="cartTotalPrice">Total: ৳0</div>
+  <button class="btn btn-wa" id="checkoutCartBtn"><i class="fab fa-whatsapp"></i> Checkout via WhatsApp</button>
+</div>
+
+<script>
+  // ---------- MENU DATA ----------
+  const menuData = [
+    // Pizza
+    { id: 1, name: "Margherita Pizza", category: "Pizza", price: 450, desc: "Classic mozzarella, fresh basil, tomato sauce", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400" },
+    { id: 2, name: "Pepperoni Passion", category: "Pizza", price: 550, desc: "Loaded pepperoni, mozzarella, oregano", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400" },
+    { id: 3, name: "Quattro Formaggi", category: "Pizza", price: 620, desc: "4 cheese blend: mozzarella, gorgonzola, parmesan", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400" },
+    // Pasta
+    { id: 4, name: "Fettuccine Alfredo", category: "Pasta", price: 420, desc: "Creamy parmesan sauce, garlic", img: "https://images.unsplash.com/photo-1645112411344-6a5c3b3c7c7e?w=400" },
+    { id: 5, name: "Spaghetti Carbonara", category: "Pasta", price: 480, desc: "Egg, pancetta, pecorino cheese", img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400" },
+    { id: 6, name: "Penne Arrabbiata", category: "Pasta", price: 450, desc: "Spicy tomato, garlic, chilli flakes", img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400" },
+    // Drinks
+    { id: 7, name: "Italian Soda", category: "Drinks", price: 120, desc: "Refreshing fruit flavoured soda", img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400" },
+    { id: 8, name: "Classic Lemonade", category: "Drinks", price: 100, desc: "Fresh mint, lemon, chilled", img: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400" },
+    { id: 9, name: "Sparkling Water", category: "Drinks", price: 80, desc: "San Pellegrino style", img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400" },
+    // Combos
+    { id: 10, name: "Pizza Mania Combo", category: "Combos", price: 1199, desc: "1 Large Pizza + 2 Drinks + Garlic Bread", img: "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=400" },
+    { id: 11, name: "Pasta Duo Combo", category: "Combos", price: 950, desc: "2 Pastas + 2 Soft Drinks", img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400" },
+    { id: 12, name: "Family Bonanza", category: "Combos", price: 1899, desc: "2 Pizzas + 2 Pastas + 4 Drinks", img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400" }
+  ];
+
+  const WA_NUMBER = "8801888888888"; // demo restaurant number (Chittagong)
+
+  // Cart state
+  let cart = []; // each item: {id, name, price, quantity}
+
+  // Helper: render menu dynamically
+  function renderMenu() {
+    const categories = ["Pizza", "Pasta", "Drinks", "Combos"];
+    const container = document.getElementById("menuContainer");
+    container.innerHTML = "";
+    categories.forEach(cat => {
+      const items = menuData.filter(item => item.category === cat);
+      if (items.length === 0) return;
+      const sectionDiv = document.createElement("div");
+      sectionDiv.className = "category-section";
+      sectionDiv.innerHTML = `<div class="category-title"><i class="fas fa-${cat === 'Pizza' ? 'pizza-slice' : cat === 'Pasta' ? 'utensils' : cat === 'Drinks' ? 'wine-bottle' : 'gift'}"></i> ${cat}</div><div class="menu-grid" id="grid-${cat}"></div>`;
+      container.appendChild(sectionDiv);
+      const gridDiv = sectionDiv.querySelector(`.menu-grid`);
+      items.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "menu-card";
+        card.innerHTML = `
+          <div class="menu-img"><img src="${item.img}" alt="${item.name}" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>${item.name}</h4>
+            <div class="desc">${item.desc}</div>
+            <div class="price">৳${item.price}</div>
+            <div class="card-buttons">
+              <button class="btn-order-now" data-id="${item.id}" data-name="${item.name}"><i class="fab fa-whatsapp"></i> Order Now</button>
+              <button class="btn-add-cart" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+            </div>
+          </div>
+        `;
+        gridDiv.appendChild(card);
+      });
+    });
+    // attach event listeners for Order Now and Add to Cart
+    document.querySelectorAll(".btn-order-now").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const name = btn.getAttribute("data-name");
+        const message = `Hi, I want to order ${name} from The Eatalia 🍕`;
+        const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+        window.open(waLink, "_blank");
+      });
+    });
+    document.querySelectorAll(".btn-add-cart").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = parseInt(btn.getAttribute("data-id"));
+        const name = btn.getAttribute("data-name");
+        const price = parseInt(btn.getAttribute("data-price"));
+        addToCart(id, name, price);
+      });
+    });
+  }
+
+  // Cart functions
+  function addToCart(id, name, price) {
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ id, name, price, quantity: 1 });
+    }
+    updateCartUI();
+    showCartTemporaryFeedback();
+  }
+
+  function updateCartUI() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cartCount").innerText = count;
+    const cartListDiv = document.getElementById("cartItemsList");
+    if (cart.length === 0) {
+      cartListDiv.innerHTML = "<p style='text-align:center;'>Your cart is empty 🛒</p>";
+      document.getElementById("cartTotalPrice").innerText = "Total: ৳0";
+      return;
+    }
+    let html = "";
+    let total = 0;
+    cart.forEach((item, idx) => {
+      const subtotal = item.price * item.quantity;
+      total += subtotal;
+      html += `
+        <div class="cart-item">
+          <div class="cart-item-details"><p>${item.name}</p><small>৳${item.price} each</small></div>
+          <div class="cart-qty">
+            <button class="cart-qty-minus" data-id="${item.id}">-</button>
+            <span>${item.quantity}</span>
+            <button class="cart-qty-plus" data-id="${item.id}">+</button>
+            <button class="cart-remove" data-id="${item.id}" style="background:none; border:none; color:red;"><i class="fas fa-trash-alt"></i></button>
+          </div>
+          <div>৳${subtotal}</div>
+        </div>
+      `;
+    });
+    cartListDiv.innerHTML = html;
+    document.getElementById("cartTotalPrice").innerHTML = `Total: ৳${total}`;
+    // attach cart control events
+    document.querySelectorAll(".cart-qty-plus").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = parseInt(btn.getAttribute("data-id"));
+        const item = cart.find(i => i.id === id);
+        if (item) { item.quantity++; updateCartUI(); }
+      });
+    });
+    document.querySelectorAll(".cart-qty-minus").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = parseInt(btn.getAttribute("data-id"));
+        const item = cart.find(i => i.id === id);
+        if (item && item.quantity > 1) { item.quantity--; updateCartUI(); }
+        else if (item && item.quantity === 1) { cart = cart.filter(i => i.id !== id); updateCartUI(); }
+      });
+    });
+    document.querySelectorAll(".cart-remove").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const id = parseInt(btn.getAttribute("data-id"));
+        cart = cart.filter(i => i.id !== id);
+        updateCartUI();
+      });
+    });
+  }
+  function showCartTemporaryFeedback() {
+    const cartIcon = document.getElementById("cartIcon");
+    cartIcon.style.transform = "scale(1.1)";
+    setTimeout(() => { cartIcon.style.transform = "scale(1)"; }, 200);
+  }
+  function checkoutCart() {
+    if (cart.length === 0) {
+      alert("Your cart is empty. Add items first!");
+      return;
+    }
+    let orderSummary = "🍕 *New Order from The Eatalia* 🍕%0A";
+    let total = 0;
+    cart.forEach(item => {
+      const sub = item.price * item.quantity;
+      total += sub;
+      orderSummary += `- ${item.quantity}x ${item.name} = ৳${sub}%0A`;
+    });
+    orderSummary += `%0A*Total: ৳${total}*%0A%0A📍 Delivery to Chittagong. Please confirm.`;
+    const waLink = `https://wa.me/${WA_NUMBER}?text=${orderSummary}`;
+    window.open(waLink, "_blank");
+    // optional: cart reset? we don't reset to allow reorder, but feel free
+  }
+
+  // Booking via WhatsApp
+  function sendBooking() {
+    const name = document.getElementById("bookingName").value.trim();
+    const time = document.getElementById("bookingTime").value;
+    const guests = document.getElementById("bookingGuests").value.trim();
+    if (!name || !time || !guests) {
+      alert("Please fill all booking details!");
+      return;
+    }
+    const msg = `🍽️ *Table Booking Request* 🍽️%0AName: ${name}%0ATime: ${time}%0AGuests: ${guests}%0ALocation: The Eatalia, Chittagong.`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
+  }
+
+  // floating & hero WA
+  function genericWAMessage(text = "Hello! I would like to order from The Eatalia 🍕") {
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, "_blank");
+  }
+
+  // cart drawer events
+  const cartIcon = document.getElementById("cartIcon");
+  const cartDrawer = document.getElementById("cartDrawer");
+  const cartOverlay = document.getElementById("cartOverlay");
+  const closeCart = document.getElementById("closeCart");
+  function openCartDrawer() { cartDrawer.classList.add("open"); cartOverlay.classList.add("active"); }
+  function closeCartDrawer() { cartDrawer.classList.remove("open"); cartOverlay.classList.remove("active"); }
+  cartIcon.addEventListener("click", openCartDrawer);
+  closeCart.addEventListener("click", closeCartDrawer);
+  cartOverlay.addEventListener("click", closeCartDrawer);
+  document.getElementById("checkoutCartBtn").addEventListener("click", () => { checkoutCart(); closeCartDrawer(); });
+  
+  // Hero + floating + booking
+  document.getElementById("heroOrderWA").addEventListener("click", (e) => { e.preventDefault(); genericWAMessage("Hi, I want to place an order from The Eatalia 🍕"); });
+  document.getElementById("floatWhatsappBtn").addEventListener("click", (e) => { e.preventDefault(); genericWAMessage("Hello! I have a question about your menu/offers."); });
+  document.getElementById("submitBooking").addEventListener("click", sendBooking);
+  
+  // Init menu
+  renderMenu();
+  updateCartUI();
+</script>
+</body>
+</html>
