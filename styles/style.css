@@ -1,0 +1,128 @@
+:root {
+    --brand-red: #ce1a1a;
+    --brand-fire: #e25822;
+    /* Burnt Orange/Fire */
+    --brand-dark: #0f0f0f;
+    /* Deep Black */
+    --brand-surface: #1a1a1a;
+    /* Card/Surface Black */
+    --brand-green: #008c45;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--brand-dark);
+    color: #eeeeee;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Video Background Styling */
+.hero-video-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -1;
+}
+
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(15, 15, 15, 0.9) 100%);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Custom UI Elements */
+.menu-card {
+    background-color: var(--brand-surface);
+    border: 1px solid #333;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--brand-fire);
+    box-shadow: 0 10px 30px rgba(226, 88, 34, 0.2);
+}
+
+.fire-btn {
+    background: linear-gradient(45deg, var(--brand-red), var(--brand-fire));
+    transition: filter 0.3s;
+}
+
+.fire-btn:hover {
+    filter: brightness(1.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--brand-fire);
+    border-radius: 10px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--brand-fire);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.animate-bounce-in {
+    animation: bounce-in 0.5s ease-out;
+}
