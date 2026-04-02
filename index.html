@@ -2,21 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Eatalia | Premium Pizza & Pasta in Chittagong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>The Eatalia | Wood-Fired Pizza & Pasta - Chittagong</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ce1a1a'%3E%3Cpath d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z'/%3E%3Cpath d='M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z'/%3E%3C/svg%3E">
+    <style>
+        :root {
+            --brand-red: #ce1a1a;
+            --brand-fire: #e25822;
+            --brand-dark: #0f0f0f;
+            --brand-surface: #1a1a1a;
+            --brand-green: #008c45;
+        }
 
-    <!-- SETUP FAV ICON -->
-    <link rel="icon" type="image/x-icon" href="./assets/favicon-32x32.png">
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--brand-dark);
+            color: #eeeeee;
+        }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="./styles/style.css">
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Video */
+        .hero-video-container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .dark-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(15,15,15,0.4) 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .fire-btn {
+            background: linear-gradient(45deg, var(--brand-red), var(--brand-fire));
+            transition: all 0.25s ease;
+        }
+        .fire-btn:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--brand-fire);
+            border-radius: 8px;
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0.3); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-bounce-in {
+            animation: bounce-in 0.4s ease-out;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #1a1a1a, #0c0c0c);
+            border: 1px solid #2a2a2a;
+            transition: all 0.35s ease;
+        }
+        .feature-card:hover {
+            border-color: var(--brand-fire);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -12px rgba(226,88,34,0.25);
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigation (no cart, order button now triggers WhatsApp menu request) -->
     <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 shadow-xl">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2">
@@ -26,38 +119,30 @@
                 </span>
             </div>
             <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#menu" class="text-white/80 hover:text-brand-fire transition">Menu</a>
+                <a href="#featured" class="text-white/80 hover:text-brand-fire transition">Signature</a>
                 <a href="#offers" class="text-white/80 hover:text-brand-fire transition">Offers</a>
                 <a href="#booking" class="text-white/80 hover:text-brand-fire transition">Book Table</a>
                 <a href="#gallery" class="text-white/80 hover:text-brand-fire transition">Gallery</a>
             </div>
             <div class="flex items-center gap-4">
-                <button onclick="toggleCart()" class="relative p-2 text-white/80 hover:text-brand-fire transition">
-                    <i class="fa-solid fa-cart-shopping text-xl"></i>
-                    <span id="cart-count" class="cart-badge hidden">0</span>
-                </button>
-                <a href="#menu" class="hidden sm:block fire-btn text-white px-5 py-2 rounded-full font-semibold text-sm transition">Order Now</a>
+                <a href="#" id="navMenuBtn" class="hidden sm:block fire-btn text-white px-5 py-2 rounded-full font-semibold text-sm transition">Full Menu</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Background Video -->
+    <!-- Hero Section with Video (unchanged) -->
     <section class="hero-video-container text-center text-white px-4">
-        <!-- Background Video (Muted for Autoplay) -->
         <video autoplay muted loop playsinline class="hero-video">
             <source src="./assets/pizza.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
-        <!-- Dark Overlay -->
         <div class="dark-overlay"></div>
-
         <div class="hero-content max-w-3xl">
             <span class="border border-brand-fire text-brand-fire px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block tracking-widest uppercase">Traditional Wood-Fired</span>
             <h1 class="text-6xl md:text-8xl mb-4 font-bold">The Eatalia</h1>
             <p class="text-xl md:text-2xl italic mb-8 font-light text-gray-300">"Where there's Pizza, there's Bonanza!"</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#menu" class="fire-btn text-white px-8 py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+                <a href="#" id="heroMenuBtn" class="fire-btn text-white px-8 py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> Get Full Menu
                 </a>
                 <a href="#booking" class="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all">
                     Book a Table
@@ -66,7 +151,49 @@
         </div>
     </section>
 
-    <!-- Offers Section -->
+    <!-- FEATURED ITEMS SECTION: 2 pizzas, 1 pasta, 1 combo as teasers (no full menu) -->
+    <section id="featured" class="py-20 bg-[#0f0f0f]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-3">Signature Favorites</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">A glimpse of our wood‑fired soul. Craving more? Tap the button below for the complete menu.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Pizza 1 -->
+                <div class="feature-card rounded-2xl overflow-hidden text-center p-6">
+                    <div class="text-6xl text-brand-fire mb-4"><i class="fa-solid fa-pizza-slice"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Margherita Classica</h3>
+                    <p class="text-gray-400 text-sm">San Marzano tomatoes, fresh mozzarella, basil & extra virgin olive oil. Baked to smoky perfection.</p>
+                </div>
+                <!-- Pizza 2 -->
+                <div class="feature-card rounded-2xl overflow-hidden text-center p-6">
+                    <div class="text-6xl text-brand-fire mb-4"><i class="fa-solid fa-fire"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Diavola Rossa</h3>
+                    <p class="text-gray-400 text-sm">Spicy pepperoni, 'nduja, caramelized onions, mozzarella & a kick of chili honey.</p>
+                </div>
+                <!-- Pasta -->
+                <div class="feature-card rounded-2xl overflow-hidden text-center p-6">
+                    <div class="text-6xl text-brand-fire mb-4"><i class="fa-solid fa-utensils"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Truffle Alfredo</h3>
+                    <p class="text-gray-400 text-sm">Creamy parmesan, black truffle oil, wild mushrooms, and handmade fettuccine.</p>
+                </div>
+                <!-- Combo -->
+                <div class="feature-card rounded-2xl overflow-hidden text-center p-6">
+                    <div class="text-6xl text-brand-fire mb-4"><i class="fa-solid fa-burger"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Inferno Duo</h3>
+                    <p class="text-gray-400 text-sm">Large wood-fired pizza + any pasta + 2 drinks. Perfect for sharing the fire.</p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button onclick="requestFullMenuWhatsApp()" class="fire-btn text-white px-10 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-3 transition-all hover:scale-105 shadow-lg">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Explore Full Menu on WhatsApp
+                </button>
+                <p class="text-gray-500 text-sm mt-4">The owner will send you our complete menu with prices & daily specials.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section (unchanged, but all deal buttons now request full menu) -->
     <section id="offers" class="py-16 bg-black">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12">Fired-Up Deals</h2>
@@ -76,7 +203,7 @@
                         <span class="bg-brand-fire text-white px-3 py-1 rounded-full text-xs font-bold uppercase">Friday Special</span>
                         <h3 class="text-3xl font-bold mt-2">Buy 1 Get 1 Free</h3>
                         <p class="mt-2 text-gray-400">All wood-fired Medium & Large Pizzas!</p>
-                        <button onclick="scrollToMenu()" class="mt-4 border border-white/30 hover:bg-white hover:text-black px-6 py-2 rounded-lg font-bold transition">Claim Deal</button>
+                        <button onclick="requestFullMenuWhatsApp()" class="mt-4 border border-white/30 hover:bg-white hover:text-black px-6 py-2 rounded-lg font-bold transition">Claim Deal</button>
                     </div>
                     <i class="fa-solid fa-fire-flame-curved text-9xl absolute -right-4 -bottom-4 text-white/5 group-hover:scale-110 transition-transform"></i>
                 </div>
@@ -85,7 +212,7 @@
                         <span class="bg-brand-green text-white px-3 py-1 rounded-full text-xs font-bold uppercase">Lunch Deal</span>
                         <h3 class="text-3xl font-bold mt-2">The Solo Feast</h3>
                         <p class="mt-2 text-gray-400">1 Personal Pizza + 1 Drink only ৳399</p>
-                        <button onclick="scrollToMenu()" class="mt-4 border border-white/30 hover:bg-white hover:text-black px-6 py-2 rounded-lg font-bold transition">Order Now</button>
+                        <button onclick="requestFullMenuWhatsApp()" class="mt-4 border border-white/30 hover:bg-white hover:text-black px-6 py-2 rounded-lg font-bold transition">Order Now</button>
                     </div>
                     <i class="fa-solid fa-pizza-slice text-9xl absolute -right-4 -bottom-4 text-white/5 group-hover:scale-110 transition-transform"></i>
                 </div>
@@ -93,26 +220,7 @@
         </div>
     </section>
 
-    <!-- Menu Section -->
-    <section id="menu" class="py-20 bg-[#0f0f0f]">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">The Wood-Fired Menu</h2>
-                <div class="flex flex-wrap justify-center gap-4 mt-6">
-                    <button onclick="filterMenu('all', this)" class="category-btn active px-6 py-2 rounded-full border-2 border-brand-fire bg-brand-fire text-white font-bold transition">All</button>
-                    <button onclick="filterMenu('pizza', this)" class="category-btn px-6 py-2 rounded-full border-2 border-white/20 text-white/70 font-bold hover:border-brand-fire hover:text-brand-fire transition">Pizza</button>
-                    <button onclick="filterMenu('pasta', this)" class="category-btn px-6 py-2 rounded-full border-2 border-white/20 text-white/70 font-bold hover:border-brand-fire hover:text-brand-fire transition">Pasta</button>
-                    <button onclick="filterMenu('combos', this)" class="category-btn px-6 py-2 rounded-full border-2 border-white/20 text-white/70 font-bold hover:border-brand-fire hover:text-brand-fire transition">Combos</button>
-                </div>
-            </div>
-
-            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Menu Items injected via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Table Booking -->
+    <!-- Table Booking (unchanged) -->
     <section id="booking" class="py-20 bg-black">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto bg-[#1a1a1a] rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/5">
@@ -150,7 +258,7 @@
         </div>
     </section>
 
-    <!-- Review Section -->
+    <!-- Review Section (unchanged) -->
     <section class="py-20 bg-[#0f0f0f]">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold mb-12">Customer Fire Rating</h2>
@@ -177,7 +285,31 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- GALLERY SECTION: icon-based, no photo management -->
+    <section id="gallery" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Visual Vibes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-[#1a1a1a] rounded-2xl p-8 text-center border border-white/10 transition hover:border-brand-fire group">
+                    <div class="text-7xl text-brand-fire mb-4"><i class="fa-solid fa-fire"></i></div>
+                    <h3 class="text-2xl font-bold mb-2">Wood-Fired Theatre</h3>
+                    <p class="text-gray-500">Watch our pizzas dance in 600° flame</p>
+                </div>
+                <div class="bg-[#1a1a1a] rounded-2xl p-8 text-center border border-white/10 transition hover:border-brand-fire group">
+                    <div class="text-7xl text-brand-fire mb-4"><i class="fa-solid fa-wine-glass-alt"></i></div>
+                    <h3 class="text-2xl font-bold mb-2">Rustic Elegance</h3>
+                    <p class="text-gray-500">Intimate setting & warm Italian soul</p>
+                </div>
+                <div class="bg-[#1a1a1a] rounded-2xl p-8 text-center border border-white/10 transition hover:border-brand-fire group">
+                    <div class="text-7xl text-brand-fire mb-4"><i class="fa-solid fa-utensils"></i></div>
+                    <h3 class="text-2xl font-bold mb-2">Live Open Kitchen</h3>
+                    <p class="text-gray-500">Chefs crafting magic right before you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (unchanged) -->
     <footer class="bg-black text-white pt-20 pb-10 border-t border-white/5">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
@@ -202,42 +334,69 @@
                 </div>
             </div>
             <div class="border-t border-white/5 pt-8 text-center text-gray-600 text-sm">
-                <p>&copy; 2024 The Eatalia Chittagong. Authenticity on Fire.</p>
+                <p>&copy; 2025 The Eatalia Chittagong. Authenticity on Fire.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Cart Sidebar -->
-    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-96 bg-[#1a1a1a] text-white z-[100] shadow-2xl transform translate-x-full transition-transform duration-300 border-l border-white/10">
-        <div class="p-6 h-full flex flex-col">
-            <div class="flex justify-between items-center mb-8">
-                <h3 class="text-2xl font-bold">Your Order</h3>
-                <button onclick="toggleCart()" class="text-gray-500 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
-            </div>
-            
-            <div id="cart-items" class="flex-grow overflow-y-auto space-y-4">
-                <div class="text-center text-gray-600 py-20" id="empty-cart-msg">
-                    Your cart is empty. Fuel the fire!
-                </div>
-            </div>
-
-            <div class="border-t border-white/10 pt-6 mt-6">
-                <div class="flex justify-between text-xl font-bold mb-6">
-                    <span>Total</span>
-                    <span id="cart-total" class="text-brand-fire">৳0</span>
-                </div>
-                <button onclick="checkout()" class="w-full fire-btn text-white py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i> Confirm via WhatsApp
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- WhatsApp Sticky Button -->
-    <a href="https://wa.me/8801700000000?text=Hi%20The%20Eatalia!%20I%20have%20a%20query." target="_blank" class="fixed bottom-6 right-6 z-40 bg-brand-green text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+    <!-- WhatsApp Sticky Button (requests full menu) -->
+    <a href="#" id="whatsappStickyBtn" class="fixed bottom-6 right-6 z-40 bg-brand-green text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
 
-    <script src="./js/main.js"></script>
+    <script>
+        const WHATSAPP_NUMBER = "8801700000000";
+
+        // Universal function: customer requests full menu -> owner sends via WhatsApp
+        function requestFullMenuWhatsApp() {
+            const message = "🍕🔥 Hello The Eatalia! Please share your complete wood-fired menu with prices & today's special offers. I'm ready to order!";
+            const encodedMsg = encodeURIComponent(message);
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`, '_blank');
+        }
+
+        // Attach event listeners to all relevant buttons
+        document.getElementById('heroMenuBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            requestFullMenuWhatsApp();
+        });
+        document.getElementById('navMenuBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            requestFullMenuWhatsApp();
+        });
+        document.getElementById('whatsappStickyBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            requestFullMenuWhatsApp();
+        });
+
+        // Also any "Claim Deal" or "Order Now" buttons inside offers already have onclick inline, so they work.
+
+        // Table booking form submission (WhatsApp)
+        document.getElementById('booking-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('book-name').value.trim();
+            const guests = document.getElementById('book-guests').value;
+            const time = document.getElementById('book-time').value;
+            if (!name || !time) {
+                alert("Please enter your name and preferred time.");
+                return;
+            }
+            const msg = `📅 *Table Booking Request - The Eatalia*%0A*Name:* ${name}%0A*Guests:* ${guests}%0A*Time:* ${time}%0A*Outlet:* GEC Circle, Chittagong`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+        });
+
+        // Smooth scroll for anchor links (without interfering with WhatsApp buttons)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (anchor.id === 'heroMenuBtn' || anchor.id === 'navMenuBtn' || anchor.id === 'whatsappStickyBtn') return;
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                if (targetId && (targetId === '#featured' || targetId === '#offers' || targetId === '#booking' || targetId === '#gallery')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
